@@ -38,6 +38,25 @@ could also do smaller test to make sure the bot which gathers the information wo
 
 ## QA
 
+# Search functionality to filter list of available classes
+## Functionality
+Search filtering is a feature that helps to limit the number of inappropriate search results displayed to clients. Clients can narrow and customize their search results to find exactly what courses they want. The search filtering would sort and narrow the search results by the letter that clients gave in the search bar.
+## Design
+We would have to specify each class. For example, AP Physics C would be specified as an AP course and weighted 5.0 GPA; English IV would be specified as an On-level course and weighted 4.0 GPA. Hypothetically, when the clients want to find their On-level classes, they can narrow their search results with only On-level courses.
+We can implement the filtering algorithm by using *filter(_:)*. If a client types in “English” they will get a list of English classes. If they misspell, the result will be a warning.
+## QA
+The search filtering should filter each course based on the course information given in the database.
+
+
+# Get relevant warnings about choosing classes
+## Functionality
+Pop-up warnings about the conflicts clients made while they were choosing their class. The warnings are about the classes that clients have to choose, the shuttle conflicts, the classes requirements, etc.
+## Design
+Specify each course type and contain that course information, such as the class location(STEAM, CTC, LFC), core course or selective class, grade level that can enroll to the class.
+## QA
+The warnings have to be specific about the client conflicts and how to get rid of that conflict. If they make a conflict, such as choosing more than 2 English classes then they will get a warning that they are choosing more than…… and deselect …….
+
+
 # Reset classes selected
 ## Functionality
 This will go and clear all your classes selected or queried which are in line to be scheadule. This allows you to have a fresh start on your screen instead of having to delete all the classes queried to be scheaduled.
