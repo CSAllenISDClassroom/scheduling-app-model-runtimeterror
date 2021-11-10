@@ -33,11 +33,11 @@ could also do smaller test to make sure the bot which gathers the information wo
 
 # Add/remove classes to/from schedule
 ## Functionality
-
+This feature should provide a simple way to change which classes are in the user's schedule.
 ## Design
-
+When a class is currently in a schedule it should disappear from the list of available classes and appear in another list of classes which are curently in the schedule. Adding and removing classes should be as easy as either selecting the class and clicking a button or dragging the class from one list to another.
 ## QA
-
+When a class is added or removed, the relevant class, and only the relevant class, should change from being in the schedule to not being in the schedule, or vice versa.
 # Reset classes selected
 ## Functionality
 This will go and clear all your classes selected or queried which are in line to be scheadule. This allows you to have a fresh start on your screen instead of having to delete all the classes queried to be scheaduled.
@@ -52,7 +52,8 @@ To test this function you will have to originally select a bunch of classes you 
 
 ## QA
 
-# Clean up database every predetermined interval (based on timestamp of last access or modification time)## Functionality
+# Clean up database every predetermined interval (based on timestamp of last access or modification time)
+## Functionality
 This will go and delete a users schedule after a certain period of time in which it is not accessed or changed. This will clear up the database so there willl be a limited amount of lag due to clutter, and will be able to sort which schedules are still being used or not.
 ## Design
 To make this function feasible we have to have a timer or somthing to keep track of time passed in between the intervals of log ins. We can then create a statement that everytime the link is entered the timer will be reset and so forth until it runs out. Once it runs out we need a func which deletes the data stored.
@@ -102,11 +103,11 @@ To go and test this feature we will have to have someone log on and create a sch
 
 # Edit schedule at permalink at later time with password protection
 ## Functionality
-
+If a student uses a permalink to return to a schedule they were previously working on, they should be able to assuming they enter the necessary password.
 ## Design
-
+Upon using the link to return to the schedule they were permanently working on, the student should receive a prompt to enter a password. After entering the password, they should be able to continue working with the schedule.
 ## QA
-
+The user must be required to enter the proper password to continue working on their schedule. After entering the password, the student should only be able to edit their schedule, not any other schedules, and the password must allow the user to edit the schedule they're attempting to access.
 # Email permalink to schedule to an email address
 ## Functionality
 
