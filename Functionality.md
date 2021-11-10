@@ -1,3 +1,4 @@
+```
 # Feature #
 ## Functionality
 This is the functionality of feature #
@@ -5,7 +6,7 @@ This is the functionality of feature #
 This describes the high-level engineering design of feature #
 ## QA
 This describes the high-level QA plan of feature #
-
+```
 # Get a List of Available Classes
 ## Functionality
 This is one of the most important features of the app. We need to be able to display a list of all classes offered at Allen High School. This needs to have every single class that is avaliable or else the application
