@@ -52,7 +52,8 @@ To test this function you will have to originally select a bunch of classes you 
 
 ## QA
 
-# Clean up database every predetermined interval (based on timestamp of last access or modification time)## Functionality
+# Clean up database every predetermined interval (based on timestamp of last access or modification time)
+## Functionality
 This will go and delete a users schedule after a certain period of time in which it is not accessed or changed. This will clear up the database so there willl be a limited amount of lag due to clutter, and will be able to sort which schedules are still being used or not.
 ## Design
 To make this function feasible we have to have a timer or somthing to keep track of time passed in between the intervals of log ins. We can then create a statement that everytime the link is entered the timer will be reset and so forth until it runs out. Once it runs out we need a func which deletes the data stored.
@@ -99,11 +100,11 @@ Once someone requests the permalink, a popup should appear with the link. To tes
 
 # Reset (clear) schedule
 ## Functionality
-
+This will provide an option for the user to reset and clear their practice schedule to start over. Engaging with this functionality will take out every class currently selected, and will return the schedule to it's original blank state.
 ## Design
-
+To create this feature, we will need to create a function in which every time the reset option is called, all information currently provided will reset to an original empty state. Setting an empty schedule as the default, calling this function will return to the default and clear the schedule. 
 ## QA
-
+To test this function we will first need someone to log on and add classes to a schedule. Then, they will need to engage with the reset/clear schedule button. If the schedule removes all classes and returns to a blank state, our function has worked. If it does not remove all classes, then it has not worked. We will need to test the reset button at every stage of schedule creation; whether the user has 1 class selected, 3 classes, or every class, the function should work all the same.
 # Insert morning schedule priorities (athletics, band, etc.)
 ## Functionality
 
@@ -134,10 +135,11 @@ Once someone requests the permalink, a popup should appear with the link. To tes
 
 # Print schedule (browser print dialog)
 ## Functionality
-
+This will provide an option for the user to open the print dialog within the browser. The print dialog will give the option to print the users completed schedule in condensed form, while also having other preferred printing options available.
 ## Design
-
+To create this feature, we will need to make a button of some sort that will invoke a function that will call the browser print dialog. The function will essentially do the same as CTRL+P.
 ## QA
+To test this feature, we will need to log on and create a full, complete schedule. Once completed, we will need to press the Print Schedule button. If the browser print dialog pops up, then our function works. If the dialog does not pop up, our function does not work.
 
 # Save schedule as PDF or PNG
 ## Functionality
