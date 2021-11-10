@@ -11,7 +11,6 @@ As stated before, if this one feature messes up, the whole application will be a
 is to manually input the information for each class, although this might lead to more issues than if a program were to do it itself. To test the program that replicates each class, we should first test it on smaller,
 more easy to work with databases before moving into the real deal. Creating our own small database and replicating it is a good way to test out the basic function, of course there could still be problems with the
 code on a larger scale, so we should manually check if information has been transfered properly on the real test.
-
 # Get Specific Course Information
 ## Functionality
 While this feature is similar to the preious one, we need to gather a lot more information and possibly from different places. We need to retrive information on each class including discription, times available, possible
@@ -25,6 +24,19 @@ too much. If there is no pre existing database of class information, we would ha
 Testing this feature will be similar to testing the list of classes, although might be more difficult since much more information is being gathered, and some information might need to be added maunally. We can have a
 function that alerts what information we were unable to find and allows for people to manually add it later. To ensure all information is linked with the correct class, we would need to read each list ourselves. We
 could also do smaller test to make sure the bot which gathers the information works well before letting it go on way more information.
+# Search functionality to filter list of available classes
+## Functionality
+
+## Design
+
+## QA
+
+# Add/remove classes to/from schedule
+## Functionality
+
+## Design
+
+## QA
 
 # Reset classes selected
 ## Functionality
@@ -33,6 +45,12 @@ This will go and clear all your classes selected or queried which are in line to
 To have this working we will use the same func which individually removes the classes queried. We will go and identify all the classes which are quried and then use the remove function to get rid of it.
 ## QA
 To test this function you will have to originally select a bunch of classes you will be hypothetically be taking. Next you will go and click the reset class button. If this works correctly there should be absolutely no classes quried for scheaduling and the coloumn should be blank.
+# Get relevant warnings about choosing classes
+## Functionality
+
+## Design
+
+## QA
 
 # Clean up database every predetermined interval (based on timestamp of last access or modification time)## Functionality
 This will go and delete a users schedule after a certain period of time in which it is not accessed or changed. This will clear up the database so there willl be a limited amount of lag due to clutter, and will be able to sort which schedules are still being used or not.
@@ -57,3 +75,73 @@ The feature will simply output the link to the schedule within the API. Also, it
 ## QA
 Once someone requests the permalink, a popup should appear with the link. To test this feature, we would have someone generate their schedule, then generate a permalink. Check before and after a database clenup to make sure the link functions.
 
+=======
+# Get general state of schedule(conflicts, empty classes, etc.)
+## Functionality
+
+## Design
+
+## QA
+
+# Add/remove time slots for classes chosen to schedule
+## Functionality
+
+## Design
+
+## QA
+
+# Get relevant warnings about scheduling classes
+## Functionality
+
+## Design
+
+## QA
+
+# Reset (clear) schedule
+## Functionality
+
+## Design
+
+## QA
+
+# Insert morning schedule priorities (athletics, band, etc.)
+## Functionality
+
+## Design
+
+## QA
+
+# Get permalink to schedule
+## Functionality
+
+## Design
+
+## QA
+
+# Edit schedule at permalink at later time with password protection
+## Functionality
+
+## Design
+
+## QA
+
+# Email permalink to schedule to an email address
+## Functionality
+
+## Design
+
+## QA
+
+# Print schedule (browser print dialog)
+## Functionality
+
+## Design
+
+## QA
+
+# Save schedule as PDF or PNG
+## Functionality
+
+## Design
+
+## QA
