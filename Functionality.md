@@ -1,7 +1,7 @@
-# Feature 1
-## Functionality
-This is the functionality of feature 1.
+# Getting General State of Schedule 
+## Futionality
+This feature is designed to help students to build schedules without class conflicts (prerequisites, empty classes, availability at certain times of the day).
 ## Design
-This describes the high-level engineering design of Feature 1
+The plan is to get all the classes and their respective information (periods offered, prerequisites, and other info), and create an algorithm or function that checks the classes for these conflicts.
 ## QA
-This describes the high-level QA plan of Feature 1
+This will hopefully be mostly automated. May need an override option incase something breaks.
