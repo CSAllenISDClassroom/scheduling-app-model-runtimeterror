@@ -53,7 +53,8 @@ To test this function you will have to originally select a bunch of classes you 
 
 ## QA
 
-# Clean up database every predetermined interval (based on timestamp of last access or modification time)## Functionality
+# Clean up database every predetermined interval (based on timestamp of last access or modification time)
+## Functionality
 This will go and delete a users schedule after a certain period of time in which it is not accessed or changed. This will clear up the database so there willl be a limited amount of lag due to clutter, and will be able to sort which schedules are still being used or not.
 ## Design
 To make this function feasible we have to have a timer or somthing to keep track of time passed in between the intervals of log ins. We can then create a statement that everytime the link is entered the timer will be reset and so forth until it runs out. Once it runs out we need a func which deletes the data stored.
