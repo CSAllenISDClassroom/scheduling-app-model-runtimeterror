@@ -28,6 +28,7 @@ As stated before, if this one feature messes up, the whole application will be a
 is to manually input the information for each class, although this might lead to more issues than if a program were to do it itself. To test the program that replicates each class, we should first test it on smaller,
 more easy to work with databases before moving into the real deal. Creating our own small database and replicating it is a good way to test out the basic function, of course there could still be problems with the
 code on a larger scale, so we should manually check if information has been transfered properly on the real test.
+
 # Get Specific Course Information
 ## Functionality
 While this feature is similar to the preious one, we need to gather a lot more information and possibly from different places. We need to retrive information on each class including discription, times available, possible
@@ -41,12 +42,25 @@ too much. If there is no pre existing database of class information, we would ha
 Testing this feature will be similar to testing the list of classes, although might be more difficult since much more information is being gathered, and some information might need to be added maunally. We can have a
 function that alerts what information we were unable to find and allows for people to manually add it later. To ensure all information is linked with the correct class, we would need to read each list ourselves. We
 could also do smaller test to make sure the bot which gathers the information works well before letting it go on way more information.
+
 # Search functionality to filter list of available classes
 ## Functionality
-
+Search filtering is a feature that helps to limit the number of inappropriate search results displayed to clients. Clients can narrow and customize their search results to find exactly what courses they want. The search filtering would sort and narrow the search results by the letter that clients gave in the search bar.
 ## Design
-
+We would have to specify each class. For example, AP Physics C would be specified as an AP course and weighted 5.0 GPA; English IV would be specified as an On-level course and weighted 4.0 GPA. Hypothetically, when the clients want to find their On-level classes, they can narrow their search results with only On-level courses.
+We can implement the filtering algorithm by using *filter(_:)*. If a client types in “English” they will get a list of English classes. If they misspell, the result will be a warning.
 ## QA
+The search filtering should filter each course based on the course information given in the database.
+
+
+# Get relevant warnings about choosing classes
+## Functionality
+Pop-up warnings about the conflicts clients made while they were choosing their class. The warnings are about the classes that clients have to choose, the shuttle conflicts, the classes requirements, etc.
+## Design
+Specify each course type and contain that course information, such as the class location(STEAM, CTC, LFC), core course or selective class, grade level that can enroll to the class.
+## QA
+The warnings have to be specific about the client conflicts and how to get rid of that conflict. If they make a conflict, such as choosing more than 2 English classes then they will get a warning that they are choosing more than…… and deselect 
+
 
 # Add/remove classes to/from schedule
 ## Functionality
@@ -62,6 +76,7 @@ This will go and clear all your classes selected or queried which are in line to
 To have this working we will use the same func which individually removes the classes queried. We will go and identify all the classes which are quried and then use the remove function to get rid of it.
 ## QA
 To test this function you will have to originally select a bunch of classes you will be hypothetically be taking. Next you will go and click the reset class button. If this works correctly there should be absolutely no classes quried for scheaduling and the coloumn should be blank.
+
 # Get relevant warnings about choosing classes
 ## Functionality
 
