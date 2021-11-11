@@ -1,4 +1,3 @@
-
 # Add/remove time slots for classes chosen to schedule
 ## Functionality
 This feature will allow users to add and remove class periods to the schedule they are making.
@@ -105,19 +104,21 @@ To go and test this feature we will have to have someone log on and create a sch
 
 ## QA
 
-# Insert morning schedule priorities (athletics, band, etc.)
+# Insert morning schedule priorities
 ## Functionality
-
+This feature will allow someone to make a first period class have priority, for example, band. This will prevent the person from scheduling a STEAM class for 2nd or 5th period, which in turn will prevent possible schedule confilicts.
 ## Design
-
+Once a first period gets added, the function that adds classes will prevent a class being scheduled during 2nd or 5th period, preventing a time conflict.
 ## QA
+If someone tries to schedule a STEAM class during 2nd or 5th period with a non-privlege first period, a popup should appear to alert the user that the class cannot be scheduled. To test this, we simply generate a schedule with a first period, then attempt to add a second and fifth period steam class.
 
 # Get permalink to schedule
 ## Functionality
-
+This feature will allow someone to have a permanent link to their schedule, allowing them to look at it or make changes to it in the future.
 ## Design
-
+The feature will simply output the link to the schedule within the API. Also, it will prevent the schedule from being removed from the database during cleanup.
 ## QA
+Once someone requests the permalink, a popup should appear with the link. To test this feature, we would have someone generate their schedule, then generate a permalink. Check before and after a database clenup to make sure the link functions.
 
 # Edit schedule at permalink at later time with password protection
 ## Functionality
@@ -126,6 +127,7 @@ If a student uses a permalink to return to a schedule they were previously worki
 Upon using the link to return to the schedule they were permanently working on, the student should receive a prompt to enter a password. After entering the password, they should be able to continue working with the schedule.
 ## QA
 The user must be required to enter the proper password to continue working on their schedule. After entering the password, the student should only be able to edit their schedule, not any other schedules, and the password must allow the user to edit the schedule they're attempting to access.
+
 # Email permalink to schedule to an email address
 ## Functionality
 
