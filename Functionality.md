@@ -159,9 +159,4 @@ To create this feature, we will need to make a button of some sort that will inv
 ## QA
 To test this feature, we will need to log on and create a full, complete schedule. Once completed, we will need to press the Print Schedule button. If the browser print dialog pops up, then our function works. If the dialog does not pop up, our function does not work.
 
-# Save schedule as PDF or PNG
-## Functionality
-This feature is designed to aid students in sharing their schedule builds with their friends.
-## Design
-The plan is to get HTML to initiate the chrome page screenshot function thing or convert the HTML things to a PDF. Otherwise, I have no idea.
-## QA
+
