@@ -93,13 +93,6 @@ To have this working we will use the same func which individually removes the cl
 ## QA
 To test this function you will have to originally select a bunch of classes you will be hypothetically be taking. Next you will go and click the reset class button. If this works correctly there should be absolutely no classes quried for scheaduling and the coloumn should be blank.
 
-# Get relevant warnings about choosing classes
-## Functionality
-
-## Design
-
-## QA
-
 # Clean up database every predetermined interval (based on timestamp of last access or modification time)
 ## Functionality
 This will go and delete a users schedule after a certain period of time in which it is not accessed or changed. This will clear up the database so there willl be a limited amount of lag due to clutter, and will be able to sort which schedules are still being used or not.
@@ -108,43 +101,6 @@ To make this function feasible we have to have a timer or somthing to keep track
 ## QA
 To go and test this feature we will have to have someone log on and create a schedule. They will go and wait the set amount in which it is supposed to delet. They will then go back and try accessing that same schedule. If the schedule is still there the function did not work. If it was deleted the function did its job. Another thing you will need to do to test it is the length of the deletion. You will go and create the schedule and log back in it. If this resets the time before deletion it is working , if the timer continues then it is not working.
 
-# Insert morning schedule priorities
-## Functionality
-This feature will allow someone to make a first period class have priority, for example, band. This will prevent the person from scheduling a STEAM class for 2nd or 5th period, which in turn will prevent possible schedule confilicts.
-## Design
-Once a first period gets added, the function that adds classes will prevent a class being scheduled during 2nd or 5th period, preventing a time conflict.
-## QA
-If someone tries to schedule a STEAM class during 2nd or 5th period with a non-privlege first period, a popup should appear to alert the user that the class cannot be scheduled. To test this, we simply generate a schedule with a first period, then attempt to add a second and fifth period steam class.
-
-# Get permalink to schedule
-## Functionality
-This feature will allow someone to have a permanent link to their schedule, allowing them to look at it or make changes to it in the future.
-## Design
-The feature will simply output the link to the schedule within the API. Also, it will prevent the schedule from being removed from the database during cleanup.
-## QA
-Once someone requests the permalink, a popup should appear with the link. To test this feature, we would have someone generate their schedule, then generate a permalink. Check before and after a database clenup to make sure the link functions.
-
-# Get general state of schedule(conflicts, empty classes, etc.)
-## Functionality
-
-## Design
-
-## QA
-
-# Add/remove time slots for classes chosen to schedule
-## Functionality
-
-## Design
-
-## QA
-
-# Get relevant warnings about scheduling classes
-## Functionality
-
-## Design
-
-## QA
-
 # Reset (clear) schedule
 ## Functionality
 This will provide an option for the user to reset and clear their practice schedule to start over. Engaging with this functionality will take out every class currently selected, and will return the schedule to it's original blank state.
@@ -152,6 +108,7 @@ This will provide an option for the user to reset and clear their practice sched
 To create this feature, we will need to create a function in which every time the reset option is called, all information currently provided will reset to an original empty state. Setting an empty schedule as the default, calling this function will return to the default and clear the schedule. 
 ## QA
 To test this function we will first need someone to log on and add classes to a schedule. Then, they will need to engage with the reset/clear schedule button. If the schedule removes all classes and returns to a blank state, our function has worked. If it does not remove all classes, then it has not worked. We will need to test the reset button at every stage of schedule creation; whether the user has 1 class selected, 3 classes, or every class, the function should work all the same.
+
 # Insert morning schedule priorities (athletics, band, etc.)
 ## Functionality
 This feature will allow someone to make a first period class have priority, for example, band. This will prevent the person from scheduling a STEAM class for 2nd or 5th period, which in turn will prevent possible schedule confilicts.
