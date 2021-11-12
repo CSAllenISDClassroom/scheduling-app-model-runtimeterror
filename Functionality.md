@@ -1,4 +1,12 @@
-
+```
+# Feature #
+## Functionality
+This is the functionality of feature #
+## Design
+This describes the high-level engineering design of feature #
+## QA
+This describes the high-level QA plan of feature #
+```
 # Getting General State of Schedule 
 ## Futionality
 This feature is designed to help students to build schedules without class conflicts (prerequisites, empty classes, availability at certain times of the day).
@@ -6,7 +14,6 @@ This feature is designed to help students to build schedules without class confl
 The plan is to get all the classes and their respective information (periods offered, prerequisites, and other info), and create an algorithm or function that checks the classes for these conflicts.
 ## QA
 This will hopefully be mostly automated. May need an override option incase something breaks.
-<<<<<<< HEAD
 
 # Save Schedule as PDF or PNG 
 ## Futionality
@@ -16,8 +23,7 @@ The plan is to get HTML to initiate the chrome page screenshot function thing or
 ## QA
 This will probably have a button on the page, so we'll have a function to do something to do the thing. Yeah I'm too tired for this.
 
-=======
-=======
+
 # Add/remove time slots for classes chosen to schedule
 ## Functionality
 This feature will allow users to add and remove class periods to the schedule they are making.
@@ -97,13 +103,6 @@ To have this working we will use the same func which individually removes the cl
 ## QA
 To test this function you will have to originally select a bunch of classes you will be hypothetically be taking. Next you will go and click the reset class button. If this works correctly there should be absolutely no classes quried for scheaduling and the coloumn should be blank.
 
-# Get relevant warnings about choosing classes
-## Functionality
-
-## Design
-
-## QA
-
 # Clean up database every predetermined interval (based on timestamp of last access or modification time)
 ## Functionality
 This will go and delete a users schedule after a certain period of time in which it is not accessed or changed. This will clear up the database so there willl be a limited amount of lag due to clutter, and will be able to sort which schedules are still being used or not.
@@ -111,35 +110,16 @@ This will go and delete a users schedule after a certain period of time in which
 To make this function feasible we have to have a timer or somthing to keep track of time passed in between the intervals of log ins. We can then create a statement that everytime the link is entered the timer will be reset and so forth until it runs out. Once it runs out we need a func which deletes the data stored.
 ## QA
 To go and test this feature we will have to have someone log on and create a schedule. They will go and wait the set amount in which it is supposed to delet. They will then go back and try accessing that same schedule. If the schedule is still there the function did not work. If it was deleted the function did its job. Another thing you will need to do to test it is the length of the deletion. You will go and create the schedule and log back in it. If this resets the time before deletion it is working , if the timer continues then it is not working.
-# Get general state of schedule(conflicts, empty classes, etc.)
-## Functionality
-
-## Design
-
-## QA
-
-# Add/remove time slots for classes chosen to schedule
-## Functionality
-
-## Design
-
-## QA
-
-# Get relevant warnings about scheduling classes
-## Functionality
-
-## Design
-
-## QA
 
 # Reset (clear) schedule
 ## Functionality
-
+This will provide an option for the user to reset and clear their practice schedule to start over. Engaging with this functionality will take out every class currently selected, and will return the schedule to it's original blank state.
 ## Design
-
+To create this feature, we will need to create a function in which every time the reset option is called, all information currently provided will reset to an original empty state. Setting an empty schedule as the default, calling this function will return to the default and clear the schedule. 
 ## QA
+To test this function we will first need someone to log on and add classes to a schedule. Then, they will need to engage with the reset/clear schedule button. If the schedule removes all classes and returns to a blank state, our function has worked. If it does not remove all classes, then it has not worked. We will need to test the reset button at every stage of schedule creation; whether the user has 1 class selected, 3 classes, or every class, the function should work all the same.
 
-# Insert morning schedule priorities
+# Insert morning schedule priorities (athletics, band, etc.)
 ## Functionality
 This feature will allow someone to make a first period class have priority, for example, band. This will prevent the person from scheduling a STEAM class for 2nd or 5th period, which in turn will prevent possible schedule confilicts.
 ## Design
@@ -165,22 +145,23 @@ The user must be required to enter the proper password to continue working on th
 
 # Email permalink to schedule to an email address
 ## Functionality
-
+The API consumer can email a permalink of the created schedule to a specified recipient. The email will include a well-formatted HTML message sent from a credible email address. The message will primarily include a clickable permalink but also a link if the recipient wants to unsubscribe from future emails regarding the schedule. This is to make sure unintended recipients' inboxes aren't bombarded with these emails.
 ## Design
-
+This feature will use a POST request with relevant data such as `recipientEmail` and a `scheduleId` to retrieve the correct permalink. Data transferred with the POST request will be encoded in JSON and transmitted over the HTTPS protocol.
 ## QA
+This feature can be tested by invoking the API with the relevant information in JSON. The `recipientEmail` will be one accessible by the tester. Once the API is invoked with a mock `scheduleId` that exists with enough information to have a `permalink`, the inbox of the `recipientEmail` will be checked to ensure the email comes through as intended (HTML format, sender email address, unsubscribe link, etc).
 
 # Print schedule (browser print dialog)
 ## Functionality
-
+This will provide an option for the user to open the print dialog within the browser. The print dialog will give the option to print the users completed schedule in condensed form, while also having other preferred printing options available.
 ## Design
-
+To create this feature, we will need to make a button of some sort that will invoke a function that will call the browser print dialog. The function will essentially do the same as CTRL+P.
 ## QA
+To test this feature, we will need to log on and create a full, complete schedule. Once completed, we will need to press the Print Schedule button. If the browser print dialog pops up, then our function works. If the dialog does not pop up, our function does not work.
 
 # Save schedule as PDF or PNG
 ## Functionality
-
+This feature is designed to aid students in sharing their schedule builds with their friends.
 ## Design
-
+The plan is to get HTML to initiate the chrome page screenshot function thing or convert the HTML things to a PDF. Otherwise, I have no idea.
 ## QA
->>>>>>> 32475cf31062bb8f7160e5274c882d613711e815
