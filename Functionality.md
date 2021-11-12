@@ -1,4 +1,3 @@
-
 # Add/remove time slots for classes chosen to schedule
 ## Functionality
 This feature will allow users to add and remove class periods to the schedule they are making.
