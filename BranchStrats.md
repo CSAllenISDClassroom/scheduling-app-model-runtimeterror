@@ -19,4 +19,4 @@
      | Pros                                                                        | Cons                                                                                |
      |-----------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
      | <sup>One feature being broken won't block <br>other features from deploying | <sup>It's possible for branches to run fine<br> independently but break when merged |
-     |                                                                             |                                                                                     |
+     | <sup>Branch maintenance is far less of a burden                             | <sup>A bad merge on main can leave it in an undeployable state                      |
