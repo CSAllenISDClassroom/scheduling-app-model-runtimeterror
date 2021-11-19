@@ -17,7 +17,7 @@
 ## Exemplary
 * Akshat Shah (15.94%)
 * Enzo Norton-Mitchell (15.94%)
-* enm (14.49%)
+  * enm (14.49%)
 * RepublicOfMars (13.04%) = William Jackson
   * William Jackson (5.80%)
 * Phat Bui (10.14%)
