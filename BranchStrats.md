@@ -49,4 +49,5 @@
 	<br>
 	<br>
 **Rules for adding features, resolving bugs, and managing releases**
-- Adding features and resolving bugs will be listed in the issues section of the repository. If any features are needed or any bugs have to be resolved, add a message to the issues section and start working on it, or ask the appropriate person to work on it. <br> Release management will be done by the release manager. This will consist of putting releases onto a dedicated release branch, which is EXCLUSIVELY for releases. This will involve making a tag for the release in Semantic Versioning, titling the release, and describing any pertinent information about the release.
+- Adding features and resolving bugs will be listed in the issues section of the repository. If any features are needed or any bugs have to be resolved, add a message to the issues section and start working on it, or ask the appropriate person for the job to work on it. <br> 
+- Release management will be done by the release manager. This will consist of putting releases onto a dedicated release branch, which is EXCLUSIVELY for releases. This will involve making a tag for the release in Semantic Versioning, titling the release, and describing any pertinent information about the release.
