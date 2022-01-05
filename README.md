@@ -10,6 +10,7 @@
 * Patrick Bui (Development Engineer)
 * Samuel Steele (Development Engineer)
 * Cole Smith (Development Engineer)
+* Logan O'Roark (Development Engineer)
 
 ## Role Responsibilities
 * Leads
