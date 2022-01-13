@@ -1,4 +1,4 @@
-﻿# Arena Scheduling Simulator
+# Arena Scheduling Simulator
 
 ## Team
 * Akshat Shah (Project Manager)
@@ -23,3 +23,11 @@
 * Engineers
     * The **QA engineer** is responsible for identifying and fixing any defects with the application through thorough testing.
     * The **development engineer** is responsible for writing code to create the application's backend.
+
+# This document provides information for the API Endpoints related to the A.S.S.
+
+# Documentation Standards
+* Return values are documented in their respective classes
+* Each class also provides a sample representation in JSON
+* The API Endpoint indicates variables using braces, e.g. {id}
+* Query parameters refer to supplementary arguments specified in the URL as part of the query string, e.g. ?page=3&per=25
