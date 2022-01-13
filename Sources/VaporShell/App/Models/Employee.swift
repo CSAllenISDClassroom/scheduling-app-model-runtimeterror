@@ -17,33 +17,33 @@ import Vapor
 import Fluent
 import FluentMySQLDriver
 
-// UNCOMMENT-DATABASE to configure database example
-// // Content conformance will ensure that the object can be encoded and decoded from HTTP messages.
-// final class Employee: Model, Content {
-//     // Name of the table or collection.
-//     static let schema = "employees"
+/// This class provides the model for an Employee
+final public class Employee: Model, Content {
+    // Name of the table or collection.
+    public static let schema = "employees"
 
-//     // Unique identifier for this Employee.
-//     @ID(custom: "emp_no", generatedBy: .database)
-//     var id: Int?
+    /// Unique identifier for this Employee.
+    @ID(custom: "emp_no", generatedBy: .database)
+    public var id: Int?
 
-//     // Additional fields for this Employee.
-//     @Field(key: "first_name")
-//     var firstName: String
+    /// First name of employee
+    @Field(key: "first_name")
+    public var firstName: String
 
-//     @Field(key: "last_name")
-//     var lastName: String
+    /// Last name of employee
+    @Field(key: "last_name")
+    public var lastName: String
 
-//     @Field(key: "gender")
-//     var gender: String
+    @Field(key: "gender")
+    public var gender: String
 
-//     @Field(key: "birth_date")
-//     var birthDate: Date
+    @Field(key: "birth_date")
+    public var birthDate: Date
 
-//     @Field(key: "hire_date")
-//     var hireDate: Date
+    @Field(key: "hire_date")
+    public var hireDate: Date
 
-//     // Creates a new, empty Employee.
-//     init() { }
-// }
+    // Creates a new, empty Employee.
+    public init() { }
+}
 

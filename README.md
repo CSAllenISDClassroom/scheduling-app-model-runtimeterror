@@ -1,7 +1,10 @@
-# VaporShell
+# This document provides information for the API Endpoints related to the Employee database
 
-An empty shell to serve as a starting point for using Vapor.
+# Documentation Standards
+* Return values are documented in their respective classes
+* Each class also provides a sample representation in JSON
+* The API Endpoint indicates variables using braces, e.g. {id}
+* Query parameters refer to supplementary arguments specified in the URL as part of the query string, e.g. ?page=3&per=25
 
-* To serve files from the /Public folder, search for "UNCOMMENT-PUBLIC" and uncomment
-* For a database example, search for "UNCOMMENT-DATABASE" and uncomment.
+
 

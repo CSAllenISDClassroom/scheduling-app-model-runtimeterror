@@ -16,8 +16,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 import Vapor
 
 // UNCOMMENT-DATABASE to configure database example
-// import Fluent
-// import FluentMySQLDriver
+import Fluent
+import FluentMySQLDriver
+
+let employeesController = EmployeesController()
 
 func routes(_ app: Application) throws {
     
@@ -26,24 +28,15 @@ func routes(_ app: Application) throws {
     }
 
     // UNCOMMENT-DATABASE to configure database example
-    // // Find an employee with the specified ID
-    // app.get ("employees", ":id") { req -> Employee in
-    //     guard let id = req.parameters.get("id", as: Int.self) else {
-    //         throw Abort(.badRequest)
-    //     }
-        
-    //     guard let employee = try await Employee.query(on: req.db)
-    //             .filter(\.$id == id)
-    //             .first() else {
-    //         throw Abort(.notFound)
-    //     }
-    //     return employee
-    // }
+    // Find an employee with the specified ID
+    try employeesController.getEmployeeById(app)
 
-    // // List all employees using paging
-    // app.get("employees") { req -> Page<Employee>  in
-    //     let employees = try await Employee.query(on: req.db)
-    //       .paginate(for: req)
-    //     return employees
-    // }
+    /// This API endpoint provides a list of all employees
+    /// Paging is supported
+    /// Endpoint URI: /employees
+    app.get("employees") { req -> Page<Employee>  in
+        let employees = try await Employee.query(on: req.db)
+          .paginate(for: req)
+        return employees
+    }
 }
