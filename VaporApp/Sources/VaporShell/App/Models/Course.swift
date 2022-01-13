@@ -22,21 +22,78 @@ public final class Course: Model, Content {
     // Name of the table or collection.
     public static let schema = "CourseSectionsView"
 
-    // Unique identifier for this Course.
+    ///Unique identifier for this Course.
     @ID(custom: "code", generatedBy: .database)
     public var id: String?
 
-    // Description of the course
+    ///Description of the course
     @Field(key: "description")
     public var description: String
 
-    /// 
+    ///Short description
+    @Field(key: "shortDescription")
+    public var shortDescription:String
+
+    ///Long description
+    @Field(key: "longDescription")
+    public var longDescription:String?
+    
+    ///Semester
     @Field(key: "semester")
     public var semester: String
 
+    ///Location of Course
     @Field(key: "locationName")
     public var locationName: String
 
+    ///credits low
+    @Field(key: "creditsLow")
+    public var creditsLow:Double?
+
+    ///credits high
+    @Field(key: "creditsHigh")
+    public var creditsHigh:Double?
+    
+    ///Minimum grade level
+    @Field(key: "gradesLow")
+    public var gradesLow:Int?
+    
+    ///Maximum grade level
+    @Field(key: "gradesHigh")
+    public var gradesHigh:Int?
+    
+    ///is Application
+    @Field(key: "isApplication")
+    public var isApplication:Bool
+    
+    ///On Level
+    @Field(key: "isOnLevel")
+    public var isOnLevel:Bool
+    
+    ///Pre-ap
+    @Field(key: "isPreAP")
+    public var isPreAP:Bool
+    
+    ///AP
+    @Field(key: "isAP")
+    public var isAP:Bool
+    
+    ///Dual Credit
+    @Field(key: "isDualCredit")
+    public var isDualCredit:Bool
+    
+    ///IB
+    @Field(key: "isIB")
+    public var isIB:Bool
+    
+    ///application code
+    @Field(key: "applicationCode")
+    public var applicationCode:String?
+    
+    ///avalibility bit map
+    @Field(key: "availabilityBitMap")
+    public var availabilityBitMap:String
+    
     // Creates a new, empty Course.
     public init() { }
 }
