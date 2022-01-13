@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-﻿# Arena Scheduling Simulator
+# Arena Scheduling Simulator
 
 ## Team
 * Akshat Shah (Project Manager)
