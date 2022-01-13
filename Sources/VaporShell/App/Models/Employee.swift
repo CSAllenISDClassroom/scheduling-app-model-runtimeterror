@@ -18,32 +18,32 @@ import Fluent
 import FluentMySQLDriver
 
 // UNCOMMENT-DATABASE to configure database example
-// // Content conformance will ensure that the object can be encoded and decoded from HTTP messages.
-// final class Employee: Model, Content {
-//     // Name of the table or collection.
-//     static let schema = "employees"
+// Content conformance will ensure that the object can be encoded and decoded from HTTP messages.
+final class Employee: Model, Content {
+    // Name of the table or collection.
+    static let schema = "employees"
 
-//     // Unique identifier for this Employee.
-//     @ID(custom: "emp_no", generatedBy: .database)
-//     var id: Int?
+    // Unique identifier for this Employee.
+    @ID(custom: "emp_no", generatedBy: .database)
+    var id: Int?
 
-//     // Additional fields for this Employee.
-//     @Field(key: "first_name")
-//     var firstName: String
+    // Additional fields for this Employee.
+    @Field(key: "first_name")
+    var firstName: String
 
-//     @Field(key: "last_name")
-//     var lastName: String
+    @Field(key: "last_name")
+    var lastName: String
 
-//     @Field(key: "gender")
-//     var gender: String
+    @Field(key: "gender")
+    var gender: String
 
-//     @Field(key: "birth_date")
-//     var birthDate: Date
+    @Field(key: "birth_date")
+    var birthDate: Date
 
-//     @Field(key: "hire_date")
-//     var hireDate: Date
+    @Field(key: "hire_date")
+    var hireDate: Date
 
-//     // Creates a new, empty Employee.
-//     init() { }
-// }
+    // Creates a new, empty Employee.
+    init() { }
+}
 
