@@ -18,32 +18,26 @@ import Fluent
 import FluentMySQLDriver
 
 /// This class provides the model for an Employee
-public final class Employee: Model, Content {
+public final class Course: Model, Content {
     // Name of the table or collection.
-    public static let schema = "employees"
+    public static let schema = "CourseSectionsView"
 
-    /// Unique identifier for this Employee.
-    @ID(custom: "emp_no", generatedBy: .database)
-    public var id: Int?
+    // Unique identifier for this Course.
+    @ID(custom: "code", generatedBy: .database)
+    public var id: String?
 
-    /// First name of employee
-    @Field(key: "first_name")
-    public var firstName: String
+    // Description of the course
+    @Field(key: "description")
+    public var description: String
 
-    /// Last name of employee
-    @Field(key: "last_name")
-    public var lastName: String
+    /// 
+    @Field(key: "semester")
+    public var semester: String
 
-    @Field(key: "gender")
-    public var gender: String
+    @Field(key: "locationName")
+    public var locationName: String
 
-    @Field(key: "birth_date")
-    public var birthDate: Date
-
-    @Field(key: "hire_date")
-    public var hireDate: Date
-
-    // Creates a new, empty Employee.
+    // Creates a new, empty Course.
     public init() { }
 }
 

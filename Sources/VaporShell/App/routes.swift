@@ -20,6 +20,7 @@ import Fluent
 import FluentMySQLDriver
 
 let employeesController = EmployeesController()
+let coursesController = CoursesController()
 
 func routes(_ app: Application) throws {
     
@@ -30,6 +31,8 @@ func routes(_ app: Application) throws {
     // UNCOMMENT-DATABASE to configure database example
     // Find an employee with the specified ID
     try employeesController.getEmployeeById(app)
+
+    try coursesController.getCourses(app)
 
     /// This API endpoint provides a list of all employees
     /// Paging is supported
