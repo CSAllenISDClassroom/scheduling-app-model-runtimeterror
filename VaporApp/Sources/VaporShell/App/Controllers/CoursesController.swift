@@ -7,8 +7,9 @@ public class CoursesController {
 
     public func getCourses(_ app: Application) throws {
         app.get("courses") { req -> Page<Course> in
-            let courses = try await Course.query(on: req.db)
+            let coursesData = try await CourseData.query(on: req.db)
                     .paginate(for: req)
+            let courses = coursesData.map{ Course(courseData: $0) }
             return courses
         }
     }
