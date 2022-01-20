@@ -9,7 +9,7 @@ public class CoursesController {
         app.get("courses") { req -> Page<Course> in
             let coursesData = try await CourseData.query(on: req.db)
                     .paginate(for: req)
-            let courses = coursesData.map{ Course(courseData: $0) }
+            let courses = try coursesData.map{ try Course(courseData: $0) }
             return courses
         }
     }

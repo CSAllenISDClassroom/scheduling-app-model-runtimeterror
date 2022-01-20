@@ -32,11 +32,11 @@ public final class CourseData: Model, Content {
 
     ///Short description
     @Field(key: "shortDescription")
-    public var shortDescription:String
+    public var shortDescription: String
 
     ///Long description
     @Field(key: "longDescription")
-    public var longDescription:String?
+    public var longDescription: String?
     
     ///Semester
     @Field(key: "semester")
@@ -48,51 +48,51 @@ public final class CourseData: Model, Content {
 
     ///credits low
     @Field(key: "creditsLow")
-    public var creditsLow:Double?
+    public var creditsLow: Double?
 
     ///credits high
     @Field(key: "creditsHigh")
-    public var creditsHigh:Double?
+    public var creditsHigh: Double?
     
     ///Minimum grade level
     @Field(key: "gradesLow")
-    public var gradesLow:Int?
+    public var gradesLow: Int?
     
     ///Maximum grade level
     @Field(key: "gradesHigh")
-    public var gradesHigh:Int?
+    public var gradesHigh: Int?
     
     ///is Application
     @Field(key: "isApplication")
-    public var isApplication:Bool
+    public var isApplication: Bool
     
     ///On Level
     @Field(key: "isOnLevel")
-    public var isOnLevel:Bool
+    public var isOnLevel: Bool
     
     ///Pre-ap
     @Field(key: "isPreAP")
-    public var isPreAP:Bool
+    public var isPreAP: Bool
     
     ///AP
     @Field(key: "isAP")
-    public var isAP:Bool
+    public var isAP: Bool
     
     ///Dual Credit
     @Field(key: "isDualCredit")
-    public var isDualCredit:Bool
+    public var isDualCredit: Bool
     
     ///IB
     @Field(key: "isIB")
-    public var isIB:Bool
+    public var isIB: Bool
     
     ///application code
     @Field(key: "applicationCode")
-    public var applicationCode:String?
+    public var applicationCode: String?
     
     ///avalibility bit map
-    @Field(key: "availabilityBitMap")
-    public var availabilityBitMap:Int?
+    @Field(key: "availabilityBitmap")
+    public var availabilityBitmap: Int
     
     // Creates a new, empty Course.
     public init() { }
