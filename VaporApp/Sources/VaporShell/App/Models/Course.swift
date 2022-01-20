@@ -16,7 +16,7 @@ class Course: Codable {
     public var isApplication: Bool
     public var courseLevel: String?
     public var applicationCode: String?
-    //public var periodsAvailable: [[Int]]
+    public var periodsAvailable: [[Int]]
     
     public init(courseData:CourseData){
         func getCourseLevel(courseData: CourseData) -> String? {
@@ -53,6 +53,23 @@ class Course: Codable {
         self.isApplication = courseData.isApplication
         self.courseLevel = getCourseLevel(courseData: courseData)
         self.applicationCode = courseData.applicationCode
+        self.periodsAvailable = [[Int]]()
+        
+        //generating the periods available array from the availabilitybitmap
+        guard let availabilityBitMapInteger = courseData.availabilityBitMap else {
+            return
+        }
+        let availabilityBitMap = String(availabilityBitMapInteger, radix:2)
+        var bitmapIndex = 0
+        let bitTranslation = [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7], [7, 8], [8, 9], [2, 5], [3, 6], [4, 7]]
+        print("\(description): \(availabilityBitMap)")
+        for char in availabilityBitMap.reversed() {
+            if char == "1" {
+                periodsAvailable.append(bitTranslation[bitmapIndex])
+            }
+            bitmapIndex += 1
+        }
+        print("\(periodsAvailable)")
     }
 
 }
