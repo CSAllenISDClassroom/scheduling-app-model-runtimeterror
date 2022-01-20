@@ -83,10 +83,6 @@ public final class Course: Codable {
         // TODO
 
         return periods
-=======
-        self.periodsAvailable = availabilityAsPeriods(bitmap: courseData.availabilityBitMap!) 
-        
->>>>>>> ceee54de813ac7e2febfc36a68d7701f23297bf7
     }
 
     private static func removeS(fromSemester semester: String) throws -> Int {
