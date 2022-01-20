@@ -39,6 +39,46 @@ class Course: Codable {
         func sRemover(courseData: CourseData) -> Int {
             return courseData.semester == "S1" ? 1 : 2
         }
+
+        //returns an array of an array of integers
+        //each inner array contains the period(s) that that class is available
+        //for example, [[1], [2], [2, 3], [2, 5]] indicates that that class is available
+        //during first period, second period, the double-blocked vertical period 2-3,
+        //and the double-blocked horizontal period 2-5
+        func availabilityAsPeriods(bitmap:Int) -> [[Int]] {
+            var periods = [[Int]]()
+            
+            //handle all single-period cases (bits 0-10)
+            //these bits map directly to the specified period
+            for bit in 0 ... 10 {
+                if bitmap & (1 << bit) != 0 {
+                    let period = bit
+                    periods.append([period])
+                }
+            }
+
+            //handle all vertical double-blocked periods (bits 11-20)
+            //these bits map to period pairs, eg. 0-1, 1-2, 2-3, etc.
+            for bit in 11 ... 20 {
+                if bitmap & (1 << bit) != 0 {
+                    let firstPeriod = bit - 11
+                    let secondPeriod = firstPeriod + 1
+                    periods.append([firstPeriod, secondPeriod])
+                }
+            }
+
+            //handle all horizontal double-blocked periods (bits 21-23)
+            //these bits map to the three horizontally blocked periods (2-5, 3-6, 3-7)
+            for bit in 21 ... 23 {
+                if bitmap & (1 << bit) != 0  {
+                    let firstPeriod = bit - 19
+                    let secondPeriod = firstPeriod + 3
+                    periods.append([firstPeriod, secondPeriod])
+                }
+            }
+            return periods
+        }
+
         self.id = courseData.id
         self.description = courseData.description
         self.shortDescription = courseData.shortDescription
@@ -53,23 +93,8 @@ class Course: Codable {
         self.isApplication = courseData.isApplication
         self.courseLevel = getCourseLevel(courseData: courseData)
         self.applicationCode = courseData.applicationCode
-        self.periodsAvailable = [[Int]]()
+        self.periodsAvailable = availabilityAsPeriods(bitmap: courseData.availabilityBitMap!) 
         
-        //generating the periods available array from the availabilitybitmap
-        guard let availabilityBitMapInteger = courseData.availabilityBitMap else {
-            return
-        }
-        let availabilityBitMap = String(availabilityBitMapInteger, radix:2)
-        var bitmapIndex = 0
-        let bitTranslation = [[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7], [7, 8], [8, 9], [2, 5], [3, 6], [4, 7]]
-        print("\(description): \(availabilityBitMap)")
-        for char in availabilityBitMap.reversed() {
-            if char == "1" {
-                periodsAvailable.append(bitTranslation[bitmapIndex])
-            }
-            bitmapIndex += 1
-        }
-        print("\(periodsAvailable)")
     }
 
 }
