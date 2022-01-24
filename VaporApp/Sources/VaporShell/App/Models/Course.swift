@@ -1,100 +1,101 @@
-/*
-VaporShell provides a minimal framework for starting Vapor projects.
-Copyright (C) 2021, 2022 CoderMerlin.com
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
-
 import Vapor
 import Fluent
-import FluentMySQLDriver
 
-/// This class provides the model for an Employee
-public final class Course: Model, Content {
-    // Name of the table or collection.
-    public static let schema = "CourseSectionsView"
+public final class Course: Codable {
 
-    ///Unique identifier for this Course.
-    @ID(custom: "code", generatedBy: .database)
     public var id: String?
-
-    ///Description of the course
-    @Field(key: "description")
     public var description: String
-
-    ///Short description
-    @Field(key: "shortDescription")
-    public var shortDescription:String
-
-    ///Long description
-    @Field(key: "longDescription")
-    public var longDescription:String?
-    
-    ///Semester
-    @Field(key: "semester")
-    public var semester: String
-
-    ///Location of Course
-    @Field(key: "locationName")
+    public var shortDescription: String
+    public var longDescription: String?
+    public var semester: Int
     public var locationName: String
+    public var creditsLow: Double?
+    public var creditsHigh: Double?
+    public var gradesLow: Int?
+    public var gradesHigh: Int?
+    public var isApplication: Bool
+    public var courseLevel: String?
+    public var applicationCode: String?
+    public var availability: [[Int]]
+    
+    public init(courseData: CourseData) throws {
+        func getCourseLevel(courseData: CourseData) -> String? {
+            if(courseData.isOnLevel) {
+                return "isOnLevel"
+            } else if(courseData.isPreAP) {
+                return "isPreAP"
+            } else if(courseData.isDualCredit) {
+                return "isDualCredit"
+            } else if(courseData.isAP) {
+                return "isAP"
+            } else if(courseData.isIB) {
+                return "isIB"
+            } else {
+                return nil
+            }
+        }
+        
+        self.id = courseData.id
+        self.description = courseData.description
+        self.shortDescription = courseData.shortDescription
+        self.longDescription = courseData.longDescription
+        self.semester = try Self.removeS(fromSemester: courseData.semester)
+        self.locationName = courseData.locationName
+        self.creditsLow = courseData.creditsLow
+        self.creditsHigh = courseData.creditsHigh
+        self.gradesLow = courseData.gradesLow
+        self.gradesHigh = courseData.gradesHigh
+        self.isApplication = courseData.isApplication
+        self.courseLevel = getCourseLevel(courseData: courseData)
+        self.applicationCode = courseData.applicationCode
+        self.availability = Self.availabilityAsPeriods(bitmap: courseData.availabilityBitmap)
+    }
 
-    ///credits low
-    @Field(key: "creditsLow")
-    public var creditsLow:Double?
+    // Returns an array of an array of integers
+    // Each inner array contains the period(s) that that class is available
+    // For example, [[1], [2], [2, 3]] indicates a class is available
+    // during the first period, second period, and a vertically double-blocked 2/3 period
+    private static func availabilityAsPeriods(bitmap: Int) -> [[Int]] {
+        var periods = [[Int]]()
 
-    ///credits high
-    @Field(key: "creditsHigh")
-    public var creditsHigh:Double?
-    
-    ///Minimum grade level
-    @Field(key: "gradesLow")
-    public var gradesLow:Int?
-    
-    ///Maximum grade level
-    @Field(key: "gradesHigh")
-    public var gradesHigh:Int?
-    
-    ///is Application
-    @Field(key: "isApplication")
-    public var isApplication:Bool
-    
-    ///On Level
-    @Field(key: "isOnLevel")
-    public var isOnLevel:Bool
-    
-    ///Pre-ap
-    @Field(key: "isPreAP")
-    public var isPreAP:Bool
-    
-    ///AP
-    @Field(key: "isAP")
-    public var isAP:Bool
-    
-    ///Dual Credit
-    @Field(key: "isDualCredit")
-    public var isDualCredit:Bool
-    
-    ///IB
-    @Field(key: "isIB")
-    public var isIB:Bool
-    
-    ///application code
-    @Field(key: "applicationCode")
-    public var applicationCode:String?
-    
-    ///avalibility bit map
-    @Field(key: "availabilityBitMap")
-    public var availabilityBitMap:String
-    
-    // Creates a new, empty Course.
-    public init() { }
+        // Handle all single-period cases (bits 0 ... 10)
+        // These bits map directly to the specified period
+        // bit 0 -> period 0, bit 1 -> period 1, etc.
+        for bit in 0...10 {
+            if(bitmap & (1 << bit) != 0) {
+                let period = bit
+                periods.append([period])
+            }
+        }
+
+        // Handle all vertically double-blocked periods (bits 11 ... 20)
+        // These bits map to period pairs, e.g. 0/1, 1/2, 2/3, etc.
+        for bit in 11...20 {
+            if(bitmap & (1 << bit) != 0) {
+                let firstPeriod = bit - 11
+                let secondPeriod = firstPeriod + 1
+                periods.append([firstPeriod, secondPeriod])
+            }
+        }
+
+        // Handle all horizontally double-blocked periods (bits 21 ... 23)
+        // These bits map to period pairs, e.g. 2/5, 3/6, 4/7
+        // TODO
+
+        return periods
+    }
+
+    private static func removeS(fromSemester semester: String) throws -> Int {
+        // Drop the initial 'S' from semester (S1, S2)
+        guard semester.count == 2,
+              semester.first == "S" else {
+            throw Abort(.badRequest, reason: "Expected format S1 or S2; received: \(semester)")
+        }
+
+        guard let semesterInteger = Int(String(semester.last!)),
+              (1...2).contains(semesterInteger) else {
+            throw Abort(.badRequest, reason: "Second char of semester must be int; received: \(semester)")
+        }
+        return semesterInteger
+    }
 }
-
