@@ -9,8 +9,24 @@ public class CoursesController {
         app.get("courses") { req -> Page<Course> in
             let coursesData = try await CourseData.query(on: req.db)
                     .paginate(for: req)
-            let courses = try coursesData.map{ try Course(courseData: $0) }
+            let courses = try coursesData.map{ try Course(data: $0) }
             return courses
+        }
+    }
+
+    public func getCourse(_ app: Application) throws {
+        app.get("courses", ":id") { req -> Course in
+            guard let id = req.parameters.get("id", as: String.self) else {
+                throw Abort(.badRequest)
+            }
+            
+            guard let courseData = try await CourseData.query(on: req.db)
+                    .filter(\.$id == id)
+                    .first() else {
+                throw Abort(.notFound)
+            }
+            let course = try Course(data: courseData)
+            return course
         }
     }
 
