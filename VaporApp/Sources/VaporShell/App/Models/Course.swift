@@ -18,37 +18,39 @@ public final class Course: Content {
     public var applicationCode: String?
     public var availability: [[Int]]
     
-    public init(courseData: CourseData) throws {
-        func getCourseLevel(courseData: CourseData) -> String? {
-            if(courseData.isOnLevel) {
-                return "isOnLevel"
-            } else if(courseData.isPreAP) {
-                return "isPreAP"
-            } else if(courseData.isDualCredit) {
-                return "isDualCredit"
-            } else if(courseData.isAP) {
-                return "isAP"
-            } else if(courseData.isIB) {
-                return "isIB"
-            } else {
-                return nil
-            }
-        }
+    public init(data: CourseData) throws {
         
-        self.id = courseData.id
-        self.description = courseData.description
-        self.shortDescription = courseData.shortDescription
-        self.longDescription = courseData.longDescription
-        self.semester = try Self.removeS(fromSemester: courseData.semester)
-        self.locationName = courseData.locationName
-        self.creditsLow = courseData.creditsLow
-        self.creditsHigh = courseData.creditsHigh
-        self.gradesLow = courseData.gradesLow
-        self.gradesHigh = courseData.gradesHigh
-        self.isApplication = courseData.isApplication
-        self.courseLevel = getCourseLevel(courseData: courseData)
-        self.applicationCode = courseData.applicationCode
-        self.availability = Self.availabilityAsPeriods(bitmap: courseData.availabilityBitmap)
+        
+        self.id = data.id
+        self.description = data.description
+        self.shortDescription = data.shortDescription
+        self.longDescription = data.longDescription
+        self.semester = try Self.removeS(fromSemester: data.semester)
+        self.locationName = data.locationName
+        self.creditsLow = data.creditsLow
+        self.creditsHigh = data.creditsHigh
+        self.gradesLow = data.gradesLow
+        self.gradesHigh = data.gradesHigh
+        self.isApplication = data.isApplication
+        self.courseLevel = Self.getCourseLevel(data: data)
+        self.applicationCode = data.applicationCode
+        self.availability = Self.availabilityAsPeriods(bitmap: data.availabilityBitmap)
+    }
+
+    private static func getCourseLevel(data: CourseData) -> String? {
+        if(data.isOnLevel) {
+            return "isOnLevel"
+        } else if(data.isPreAP) {
+            return "isPreAP"
+        } else if(data.isDualCredit) {
+            return "isDualCredit"
+        } else if(data.isAP) {
+            return "isAP"
+        } else if(data.isIB) {
+            return "isIB"
+        } else {
+            return nil
+        }
     }
 
     // Returns an array of an array of integers
