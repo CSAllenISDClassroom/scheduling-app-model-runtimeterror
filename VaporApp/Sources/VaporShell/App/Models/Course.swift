@@ -1,7 +1,7 @@
 import Vapor
 import Fluent
 
-public final class Course: Codable {
+public final class Course: Content {
 
     public var id: String?
     public var description: String
@@ -80,7 +80,13 @@ public final class Course: Codable {
 
         // Handle all horizontally double-blocked periods (bits 21 ... 23)
         // These bits map to period pairs, e.g. 2/5, 3/6, 4/7
-        // TODO
+        for bit in 21...23 {
+            if(bitmap & (1 << bit) != 0) {
+                let firstPeriod = bit - 19
+                let secondPeriod = firstPeriod + 3
+                periods.append([firstPeriod, secondPeriod])
+            }
+        }
 
         return periods
     }
