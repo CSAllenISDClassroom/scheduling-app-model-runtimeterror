@@ -12,6 +12,8 @@ public class CoursesController {
             let courses = try coursesData.map{ try Course(data: $0) }
             return courses
         }
+ 
+        
     }
 
     public func getCourse(_ app: Application) throws {
