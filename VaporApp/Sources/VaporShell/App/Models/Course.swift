@@ -6,17 +6,21 @@ public final class Course: Content {
     public var id: String?
     public var description: String
     public var shortDescription: String
-    public var longDescription: String?
+//      public var longDescription: String?
+    public var description: String
     public var semester: Int
-    public var locationName: String
-    public var creditsLow: Double?
+    public var location: String
+/*  public var creditsLow: Double?
     public var creditsHigh: Double?
     public var gradesLow: Int?
     public var gradesHigh: Int?
     public var isApplication: Bool
     public var courseLevel: String?
-    public var applicationCode: String?
-    public var availability: [[Int]]
+    public var applicationCode: String?*/
+    public var availabilityBitmap: [[Int]]
+    public var semesterLength: Int
+    public var dualCreditDailySchedule: String?
+
     
     public init(data: CourseData) throws {
         
@@ -24,17 +28,18 @@ public final class Course: Content {
         self.id = data.id
         self.description = data.description
         self.shortDescription = data.shortDescription
-        self.longDescription = data.longDescription
-        self.semester = try Self.removeS(fromSemester: data.semester)
-        self.locationName = data.locationName
-        self.creditsLow = data.creditsLow
+    //    self.longDescription = data.longDescription
+        self.semester = data.semester
+        self.location = data.location
+/*        self.creditsLow = data.creditsLow
         self.creditsHigh = data.creditsHigh
         self.gradesLow = data.gradesLow
         self.gradesHigh = data.gradesHigh
         self.isApplication = data.isApplication
         self.courseLevel = Self.getCourseLevel(data: data)
-        self.applicationCode = data.applicationCode
-        self.availability = Self.availabilityAsPeriods(bitmap: data.availabilityBitmap)
+        self.applicationCode = data.applicationCode*/
+        self.availabilityBitmap = Self.availabilityAsPeriods(bitmap: data.availabilityBitmap)
+        self.semesterLength = data.semesterLength
     }
 
     private static func getCourseLevel(data: CourseData) -> String? {
