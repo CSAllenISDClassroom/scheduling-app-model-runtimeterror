@@ -32,7 +32,7 @@ public final class CourseData: Model {
 
     ///Long description
     @Field(key: "description")
-    public var description: String?
+    public var description: String
     
     ///Semester
     @Field(key: "semester")
@@ -89,8 +89,8 @@ public final class CourseData: Model {
      */
     
     ///avalibility bit map
-    @Field(key: "availabilityBitmap")
-    public var availabilityBitmap: Int
+    @Field(key: "periodBitmap")
+    public var periodBitmap: Int
 
     ///semester length
     @Field(key: "semesterLength")

@@ -1,13 +1,13 @@
 import Vapor
 import Fluent
 
-public final class Course: Content {
+public final class Course: Content, Codable {
 
     public var id: String?
     public var description: String
     public var shortDescription: String
 //      public var longDescription: String?
-    public var description: String
+    //public var description: String
     public var semester: Int
     public var location: String
 /*  public var creditsLow: Double?
@@ -17,8 +17,8 @@ public final class Course: Content {
     public var isApplication: Bool
     public var courseLevel: String?
     public var applicationCode: String?*/
-    public var availabilityBitmap: [[Int]]
-    public var semesterLength: Int
+    public var periodBitmap: [[Int]]
+    public var semesterLength: String
     public var dualCreditDailySchedule: String?
 
     
@@ -38,9 +38,11 @@ public final class Course: Content {
         self.isApplication = data.isApplication
         self.courseLevel = Self.getCourseLevel(data: data)
         self.applicationCode = data.applicationCode*/
-        self.availabilityBitmap = Self.availabilityAsPeriods(bitmap: data.availabilityBitmap)
+        self.periodBitmap = Self.availabilityAsPeriods(bitmap: data.periodBitmap)
         self.semesterLength = data.semesterLength
     }
+
+    /*
 
     private static func getCourseLevel(data: CourseData) -> String? {
         if(data.isOnLevel) {
@@ -57,6 +59,8 @@ public final class Course: Content {
             return nil
         }
     }
+    
+     */
 
     // Returns an array of an array of integers
     // Each inner array contains the period(s) that that class is available
