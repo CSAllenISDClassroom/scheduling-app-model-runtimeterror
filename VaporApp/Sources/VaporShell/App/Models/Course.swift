@@ -1,7 +1,7 @@
 import Vapor
 import Fluent
 
-public final class Course: Codable {
+public final class Course: Content {
 
     public var id: String?
     public var semesterLength: String?
@@ -81,6 +81,4 @@ public final class Course: Codable {
 
         return periods
     }
-
-    
 }
