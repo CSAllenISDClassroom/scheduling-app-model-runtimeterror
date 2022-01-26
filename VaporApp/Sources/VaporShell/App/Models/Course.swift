@@ -11,12 +11,12 @@ public final class Course: Content, Codable {
     public var semester: Int
     public var location: String
     /*  public var creditsLow: Double?
-            public var creditsHigh: Double?
-                public var gradesLow: Int?
-                    public var gradesHigh: Int?
-                        public var isApplication: Bool
-                            public var courseLevel: String?
-                            public var applicationCode: String?*/
+        public var creditsHigh: Double?
+        public var gradesLow: Int?
+        public var gradesHigh: Int?
+        public var isApplication: Bool
+        public var courseLevel: String?
+        public var applicationCode: String?*/
     public var periodBitmap: [[Int]]
     public var semesterLength: String
     public var dualCreditDailySchedule: String?
@@ -32,34 +32,34 @@ public final class Course: Content, Codable {
         self.semester = data.semester
         self.location = data.location
         /*        self.creditsLow = data.creditsLow
-                          self.creditsHigh = data.creditsHigh
-                                  self.gradesLow = data.gradesLow
-                                          self.gradesHigh = data.gradesHigh
-                                                  self.isApplication = data.isApplication
-                                                          self.courseLevel = Self.getCourseLevel(data: data)
-                                                          self.applicationCode = data.applicationCode*/
+                  self.creditsHigh = data.creditsHigh
+                  self.gradesLow = data.gradesLow
+                  self.gradesHigh = data.gradesHigh
+                  self.isApplication = data.isApplication
+                  self.courseLevel = Self.getCourseLevel(data: data)
+                  self.applicationCode = data.applicationCode*/
         self.periodBitmap = Self.availabilityAsPeriods(bitmap: data.periodBitmap)
         self.semesterLength = data.semesterLength
     }
 
-        /*
-             private static func getCourseLevel(data: CourseData) -> String? {
-                     if(data.isOnLevel) {
-                                 return "isOnLevel"
-                                         } else if(data.isPreAP) {
-                                                     return "isPreAP"
-                                                             } else if(data.isDualCredit) {
-                                                                         return "isDualCredit"
-                                                                                 } else if(data.isAP) {
-                                                                                             return "isAP"
-                                                                                                     } else if(data.isIB) {
-                                                                                                                 return "isIB"
-                                                                                                                         } else {
-                                                                                                                                     return nil
-                                                                                                                                             }
-                                                                                                                                                 }
+    /*
+     private static func getCourseLevel(data: CourseData) -> String? {
+     if(data.isOnLevel) {
+     return "isOnLevel"
+     } else if(data.isPreAP) {
+     return "isPreAP"
+     } else if(data.isDualCredit) {
+     return "isDualCredit"
+     } else if(data.isAP) {
+     return "isAP"
+     } else if(data.isIB) {
+     return "isIB"
+     } else {
+     return nil
+     }
+     }
 
-         */
+     */
 
     // Returns an array of an array of integers
     // Each inner array contains the period(s) that that class is available
