@@ -27,12 +27,21 @@ func configure(_ app: Application) throws {
     // UNCOMMENT-DATABASE to configure database example
     var tls = TLSConfiguration.makeClientConfiguration()
     tls.certificateVerification = .none
+
+    // Database credentials are stored within environment variables
+    guard let dbHostname = Environment.get("AHSSchedule_DB_HOSTNAME"),
+          let dbUsername = Environment.get("AHSSchedule_DB_USERNAME"),
+          let dbPassword = Environment.get("AHSSchedule_DB_PASSWORD"),
+          let dbName = Environment.get("AHSSchedule_DB_NAME") else {
+        fatalError("Failed to obtain database credentials from environment")
+    }
+                    
     app.databases.use(.mysql(
-                        hostname: "db",
+                        hostname: dbHostname,
                         port: MySQLConfiguration.ianaPortNumber,
-                        username: "AHSSampleSchedule",
-                        password: "xQIDP-59231!",
-                        database: "AHSSampleSchedule",
+                        username: dbUsername,
+                        password: dbPassword,
+                        database: dbName,
                         tlsConfiguration: tls
                       ), as: .mysql)
 
