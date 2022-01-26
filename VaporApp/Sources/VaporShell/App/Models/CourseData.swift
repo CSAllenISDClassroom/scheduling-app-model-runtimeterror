@@ -20,32 +20,29 @@ import FluentMySQLDriver
 /// This class provides the model for an Employee
 public final class CourseData: Model {
     // Name of the table or collection.
-    public static let schema = "CourseSectionsView"
+    public static let schema = "Courses"
 
     ///Unique identifier for this Course.
-    @ID(custom: "code", generatedBy: .database)
+    @ID(custom: "courseCode", generatedBy: .database)
     public var id: String?
-
-    ///Description of the course
-    @Field(key: "description")
-    public var description: String
 
     ///Short description
     @Field(key: "shortDescription")
     public var shortDescription: String
 
     ///Long description
-    @Field(key: "longDescription")
-    public var longDescription: String?
+    @Field(key: "description")
+    public var description: String?
     
     ///Semester
     @Field(key: "semester")
-    public var semester: String
+    public var semester: Int
 
     ///Location of Course
-    @Field(key: "locationName")
-    public var locationName: String
+    @Field(key: "location")
+    public var location: String
 
+    /*
     ///credits low
     @Field(key: "creditsLow")
     public var creditsLow: Double?
@@ -88,11 +85,20 @@ public final class CourseData: Model {
     
     ///application code
     @Field(key: "applicationCode")
-    public var applicationCode: String?
+    public var applicationCode: String? 
+     */
     
     ///avalibility bit map
     @Field(key: "availabilityBitmap")
     public var availabilityBitmap: Int
+
+    ///semester length
+    @Field(key: "semesterLength")
+    public var semesterLength: String
+
+    ///avalibility bit map
+    @Field(key: "dualCreditDailySchedule")
+    public var dualCreditDailySchedule: String?
     
     // Creates a new, empty Course.
     public init() { }
