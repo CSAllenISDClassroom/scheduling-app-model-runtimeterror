@@ -12,7 +12,31 @@ public class CoursesController {
             let courses = try coursesData.map{ try Course(courseData: $0) }
             return courses
         }
+ 
+        
     }
+
+    /// Retrieves a specific course by the course id
+    ///
+    /// * API Endpoint: /courses/{id}
+    /// * Method: GET
+    /// * Query parameters: None
+    /// * Status codes:
+    ///  * 200 Successful
+    ///  * 400 Bad Request
+    ///
+    /// Returns: ``Course``
+    ///
+    /*
+    public func getCourseById(_ app: Application) throws {
+        app.get("courses", ":id") { req -> Page<Course> in
+            guard let courseData = try await CourseData.query(on: req.db).filter(\.$id == id).first().paginate(for: req) else {
+                throw Abort(.badRequest)
+            }
+            return Course(courseData:courseData)
+        }
+    }
+     */
 
     /// Retrieves the employee record specified by the ID
     ///

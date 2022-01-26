@@ -33,6 +33,7 @@ func routes(_ app: Application) throws {
     try employeesController.getEmployeeById(app)
 
     try coursesController.getCourses(app)
+    //try coursesController.getCourseById(app)
 
     /// This API endpoint provides a list of all employees
     /// Paging is supported

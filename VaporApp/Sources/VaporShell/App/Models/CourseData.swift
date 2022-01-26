@@ -20,79 +20,39 @@ import FluentMySQLDriver
 /// This class provides the model for an Employee
 public final class CourseData: Model, Content {
     // Name of the table or collection.
-    public static let schema = "CourseSectionsView"
+    public static let schema = "Courses"
 
     ///Unique identifier for this Course.
-    @ID(custom: "code", generatedBy: .database)
+    @ID(custom: "courseCode", generatedBy: .database)
     public var id: String?
 
-    ///Description of the course
-    @Field(key: "description")
-    public var description: String
+    ///length of course in semesters
+    @Field(key: "semesterLength")
+    public var semesterLength: String?
 
-    ///Short description
+    ///semester
+    @Field(key: "semester")
+    public var semester: Int
+
+    ///shortDescription
     @Field(key: "shortDescription")
     public var shortDescription: String
 
-    ///Long description
-    @Field(key: "longDescription")
-    public var longDescription: String?
-    
-    ///Semester
-    @Field(key: "semester")
-    public var semester: String
+    ///description
+    @Field(key: "description")
+    public var description: String?
 
-    ///Location of Course
-    @Field(key: "locationName")
-    public var locationName: String
+    ///dualCreditDailySchedule
+    @Field(key: "dualCreditDailySchedule")
+    public var dualCreditDailySchedule: String?
 
-    ///credits low
-    @Field(key: "creditsLow")
-    public var creditsLow: Double?
+    ///location
+    @Field(key: "location")
+    public var location: String?
 
-    ///credits high
-    @Field(key: "creditsHigh")
-    public var creditsHigh: Double?
-    
-    ///Minimum grade level
-    @Field(key: "gradesLow")
-    public var gradesLow: Int?
-    
-    ///Maximum grade level
-    @Field(key: "gradesHigh")
-    public var gradesHigh: Int?
-    
-    ///is Application
-    @Field(key: "isApplication")
-    public var isApplication: Bool
-    
-    ///On Level
-    @Field(key: "isOnLevel")
-    public var isOnLevel: Bool
-    
-    ///Pre-ap
-    @Field(key: "isPreAP")
-    public var isPreAP: Bool
-    
-    ///AP
-    @Field(key: "isAP")
-    public var isAP: Bool
-    
-    ///Dual Credit
-    @Field(key: "isDualCredit")
-    public var isDualCredit: Bool
-    
-    ///IB
-    @Field(key: "isIB")
-    public var isIB: Bool
-    
-    ///application code
-    @Field(key: "applicationCode")
-    public var applicationCode: String?
-    
-    ///avalibility bit map
-    @Field(key: "availabilityBitmap")
-    public var availabilityBitmap: Int
+    ///periodBitMap
+    @Field(key: "periodBitMap")
+    public var periodBitMap: Int?
     
     // Creates a new, empty Course.
     public init() { }
