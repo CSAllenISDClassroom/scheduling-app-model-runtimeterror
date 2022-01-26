@@ -1,46 +1,65 @@
 import Vapor
 import Fluent
 
-public final class Course: Content {
+public final class Course: Content, Codable {
 
     public var id: String?
-    public var semesterLength: String?
-    public var semester: Int
+    public var description: String
     public var shortDescription: String
-    public var description: String?
+    //      public var longDescription: String?
+    //public var description: String
+    public var semester: Int
+    public var location: String
+    /*  public var creditsLow: Double?
+            public var creditsHigh: Double?
+                public var gradesLow: Int?
+                    public var gradesHigh: Int?
+                        public var isApplication: Bool
+                            public var courseLevel: String?
+                            public var applicationCode: String?*/
+    public var periodBitmap: [[Int]]
+    public var semesterLength: String
     public var dualCreditDailySchedule: String?
-    public var location: String?
-    public var periodBitMap: Int?
-    public var availability: [[Int]]
-    
-    public init(courseData: CourseData) throws {
-        /*
-        func getCourseLevel(courseData: CourseData) -> String? {
-            if(courseData.isOnLevel) {
-                return "isOnLevel"
-            } else if(courseData.isPreAP) {
-                return "isPreAP"
-            } else if(courseData.isDualCredit) {
-                return "isDualCredit"
-            } else if(courseData.isAP) {
-                return "isAP"
-            } else if(courseData.isIB) {
-                return "isIB"
-            } else {
-                return nil
-            }
-        }
-        */
-        self.id = courseData.id
-        self.semesterLength = courseData.semesterLength
-        self.semester = courseData.semester
-        self.shortDescription = courseData.shortDescription
-        self.description = courseData.description
-        self.dualCreditDailySchedule = courseData.dualCreditDailySchedule
-        self.location = courseData.location
-        self.periodBitMap = courseData.periodBitMap
-        self.availability = Self.availabilityAsPeriods(bitmap: courseData.periodBitMap ?? 0)
+
+
+    public init(data: CourseData) throws {
+
+
+        self.id = data.id
+        self.description = data.description
+        self.shortDescription = data.shortDescription
+        //    self.longDescription = data.longDescription
+        self.semester = data.semester
+        self.location = data.location
+        /*        self.creditsLow = data.creditsLow
+                          self.creditsHigh = data.creditsHigh
+                                  self.gradesLow = data.gradesLow
+                                          self.gradesHigh = data.gradesHigh
+                                                  self.isApplication = data.isApplication
+                                                          self.courseLevel = Self.getCourseLevel(data: data)
+                                                          self.applicationCode = data.applicationCode*/
+        self.periodBitmap = Self.availabilityAsPeriods(bitmap: data.periodBitmap)
+        self.semesterLength = data.semesterLength
     }
+
+        /*
+             private static func getCourseLevel(data: CourseData) -> String? {
+                     if(data.isOnLevel) {
+                                 return "isOnLevel"
+                                         } else if(data.isPreAP) {
+                                                     return "isPreAP"
+                                                             } else if(data.isDualCredit) {
+                                                                         return "isDualCredit"
+                                                                                 } else if(data.isAP) {
+                                                                                             return "isAP"
+                                                                                                     } else if(data.isIB) {
+                                                                                                                 return "isIB"
+                                                                                                                         } else {
+                                                                                                                                     return nil
+                                                                                                                                             }
+                                                                                                                                                 }
+
+         */
 
     // Returns an array of an array of integers
     // Each inner array contains the period(s) that that class is available
@@ -80,5 +99,19 @@ public final class Course: Content {
         }
 
         return periods
+    }
+
+    private static func removeS(fromSemester semester: String) throws -> Int {
+        // Drop the initial 'S' from semester (S1, S2)
+        guard semester.count == 2,
+              semester.first == "S" else {
+            throw Abort(.badRequest, reason: "Expected format S1 or S2; received: \(semester)")
+        }
+
+        guard let semesterInteger = Int(String(semester.last!)),
+              (1...2).contains(semesterInteger) else {
+            throw Abort(.badRequest, reason: "Second char of semester must be int; received: \(semester)")
+        }
+        return semesterInteger
     }
 }
