@@ -4,12 +4,12 @@ import Fluent
 public final class Course: Content, Codable {
 
     public var id: String?
-    public var description: String
-    public var shortDescription: String
+    public var description: String?
+    public var shortDescription: String?
     //      public var longDescription: String?
     //public var description: String
-    public var semester: Int
-    public var location: String
+    public var semester: Int?
+    public var location: String?
     /*  public var creditsLow: Double?
         public var creditsHigh: Double?
         public var gradesLow: Int?
@@ -17,8 +17,8 @@ public final class Course: Content, Codable {
         public var isApplication: Bool
         public var courseLevel: String?
         public var applicationCode: String?*/
-    public var periodBitmap: [[Int]]
-    public var semesterLength: String
+    public var periodsAvailable: [[Int?]]
+    public var semesterLength: String?
     public var dualCreditDailySchedule: String?
 
 
@@ -38,7 +38,7 @@ public final class Course: Content, Codable {
                   self.isApplication = data.isApplication
                   self.courseLevel = Self.getCourseLevel(data: data)
                   self.applicationCode = data.applicationCode*/
-        self.periodBitmap = Self.availabilityAsPeriods(bitmap: data.periodBitmap)
+        self.periodsAvailable = Self.availabilityAsPeriods(bitmap: data.periodBitmap)
         self.semesterLength = data.semesterLength
     }
 

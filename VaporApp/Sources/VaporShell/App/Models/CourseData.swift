@@ -28,64 +28,64 @@ public final class CourseData: Model {
 
     ///Short description
     @Field(key: "shortDescription")
-    public var shortDescription: String
+    public var shortDescription: String?
 
     ///Long description
     @Field(key: "description")
-    public var description: String
+    public var description: String?
 
     ///Semester
     @Field(key: "semester")
-    public var semester: Int
+    public var semester: Int?
 
     ///Location of Course
     @Field(key: "location")
-    public var location: String
+    public var location: String?
 
-        /*
-             ///credits low
-                 @Field(key: "creditsLow")
-                     public var creditsLow: Double?
-                         ///credits high
-                             @Field(key: "creditsHigh")
-                                 public var creditsHigh: Double?
+    /*
+     ///credits low
+     @Field(key: "creditsLow")
+     public var creditsLow: Double?
+     ///credits high
+     @Field(key: "creditsHigh")
+     public var creditsHigh: Double?
 
-                                         ///Minimum grade level
-                                             @Field(key: "gradesLow")
-                                                 public var gradesLow: Int?
+     ///Minimum grade level
+     @Field(key: "gradesLow")
+     public var gradesLow: Int?
 
-                                                         ///Maximum grade level
-                                                             @Field(key: "gradesHigh")
-                                                                 public var gradesHigh: Int?
+     ///Maximum grade level
+     @Field(key: "gradesHigh")
+     public var gradesHigh: Int?
 
-                                                                         ///is Application
-                                                                             @Field(key: "isApplication")
-                                                                                 public var isApplication: Bool
+     ///is Application
+     @Field(key: "isApplication")
+     public var isApplication: Bool
 
-                                                                                         ///On Level
-                                                                                             @Field(key: "isOnLevel")
-                                                                                                 public var isOnLevel: Bool
+     ///On Level
+     @Field(key: "isOnLevel")
+     public var isOnLevel: Bool
 
-                                                                                                         ///Pre-ap
-                                                                                                             @Field(key: "isPreAP")
-                                                                                                                 public var isPreAP: Bool
+     ///Pre-ap
+     @Field(key: "isPreAP")
+     public var isPreAP: Bool
 
-                                                                                                                         ///AP
-                                                                                                                             @Field(key: "isAP")
-                                                                                                                                 public var isAP: Bool
+     ///AP
+     @Field(key: "isAP")
+     public var isAP: Bool
 
-                                                                                                                                         ///Dual Credit
-                                                                                                                                             @Field(key: "isDualCredit")
-                                                                                                                                                 public var isDualCredit: Bool
+     ///Dual Credit
+     @Field(key: "isDualCredit")
+     public var isDualCredit: Bool
 
-                                                                                                                                                         ///IB
-                                                                                                                                                             @Field(key: "isIB")
-                                                                                                                                                                 public var isIB: Bool
+     ///IB
+     @Field(key: "isIB")
+     public var isIB: Bool
 
-                                                                                                                                                                         ///application code
-                                                                                                                                                                             @Field(key: "applicationCode")
-                                                                                                                                                                                 public var applicationCode: String?
-         */
+     ///application code
+     @Field(key: "applicationCode")
+     public var applicationCode: String?
+     */
 
     ///avalibility bit map
     @Field(key: "periodBitmap")
@@ -93,7 +93,7 @@ public final class CourseData: Model {
 
     ///semester length
     @Field(key: "semesterLength")
-    public var semesterLength: String
+    public var semesterLength: String?
 
     ///avalibility bit map
     @Field(key: "dualCreditDailySchedule")
