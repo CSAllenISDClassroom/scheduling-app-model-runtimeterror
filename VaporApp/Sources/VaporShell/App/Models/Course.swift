@@ -5,7 +5,7 @@ public final class Course: Content, Codable {
 
     public var id: String?
     public var description: String?
-    public var shortDescription: String?
+   //  public var shortDescription: String?
     //      public var longDescription: String?
     //public var description: String
     public var semester: Int?
@@ -27,7 +27,7 @@ public final class Course: Content, Codable {
 
         self.id = data.id
         self.description = data.description
-        self.shortDescription = data.shortDescription
+      //  self.shortDescription = data.shortDescription
         //    self.longDescription = data.longDescription
         self.semester = data.semester
         self.location = data.location

@@ -27,8 +27,8 @@ public final class CourseData: Model {
     public var id: String?
 
     ///Short description
-    @Field(key: "shortDescription")
-    public var shortDescription: String?
+//    @Field(key: "shortDescription")
+  //  public var shortDescription: String?
 
     ///Long description
     @Field(key: "description")
