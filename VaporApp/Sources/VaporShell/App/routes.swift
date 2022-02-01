@@ -20,6 +20,7 @@ import Fluent
 import FluentMySQLDriver
 
 let coursesController = CoursesController()
+let categoriesController = CategoriesController()
 
 func routes(_ app: Application) throws {
     
@@ -32,6 +33,7 @@ func routes(_ app: Application) throws {
 
     try coursesController.getCourses(app)
     try coursesController.getCourse(app)
+    try categoriesController.getCategories(app)
 
     /// This API endpoint provides a list of all employees
     /// Paging is supported
