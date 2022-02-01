@@ -42,6 +42,9 @@ public final class CourseData: Model {
     @Field(key: "location")
     public var location: String?
 
+    @Field(key: "level")
+    public var level: String?
+
     /*
      ///credits low
      @Field(key: "creditsLow")

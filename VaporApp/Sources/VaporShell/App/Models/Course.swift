@@ -10,6 +10,7 @@ public final class Course: Content, Codable {
     //public var description: String
     public var semester: Int?
     public var location: String?
+    public var level: String?
     /*  public var creditsLow: Double?
         public var creditsHigh: Double?
         public var gradesLow: Int?
@@ -31,6 +32,7 @@ public final class Course: Content, Codable {
         //    self.longDescription = data.longDescription
         self.semester = data.semester
         self.location = data.location
+        self.level = data.level
         /*        self.creditsLow = data.creditsLow
                   self.creditsHigh = data.creditsHigh
                   self.gradesLow = data.gradesLow
