@@ -19,7 +19,6 @@ import Vapor
 import Fluent
 import FluentMySQLDriver
 
-let employeesController = EmployeesController()
 let coursesController = CoursesController()
 
 func routes(_ app: Application) throws {
@@ -30,7 +29,6 @@ func routes(_ app: Application) throws {
 
     // UNCOMMENT-DATABASE to configure database example
     // Find an employee with the specified ID
-    try employeesController.getEmployeeById(app)
 
     try coursesController.getCourses(app)
     try coursesController.getCourse(app)
@@ -38,9 +36,9 @@ func routes(_ app: Application) throws {
     /// This API endpoint provides a list of all employees
     /// Paging is supported
     /// Endpoint URI: /employees
-    app.get("employees") { req -> Page<Employee>  in
-        let employees = try await Employee.query(on: req.db)
-          .paginate(for: req)
-        return employees
-    }
+    // app.get("employees") { req -> Page<Employee>  in
+    //     let employees = try await Employee.query(on: req.db)
+    //       .paginate(for: req)
+    //     return employees
+    // }
 }
