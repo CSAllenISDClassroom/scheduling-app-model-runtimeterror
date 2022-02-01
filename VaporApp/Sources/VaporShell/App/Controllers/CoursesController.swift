@@ -44,6 +44,8 @@ public class CoursesController {
     ///
     /// Returns: ``Employee``
     /// 
+
+    /*
     public func getEmployeeById(_ app: Application) throws {
         app.get("employees", ":id") { req -> Employee in
 
@@ -59,4 +61,6 @@ public class CoursesController {
             return employee
         }
     }
+
+     */
 }

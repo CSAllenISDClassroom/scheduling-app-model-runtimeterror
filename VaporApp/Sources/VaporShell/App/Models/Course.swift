@@ -21,6 +21,8 @@ public final class Course: Content, Codable {
     public var periodsAvailable: [[Int?]]
     public var semesterLength: String?
     public var dualCreditDailySchedule: String?
+    public var categories: String?
+    public var subcategories: String?
 
 
     public init(data: CourseData) throws {
@@ -42,6 +44,8 @@ public final class Course: Content, Codable {
                   self.applicationCode = data.applicationCode*/
         self.periodsAvailable = Self.availabilityAsPeriods(bitmap: data.periodBitmap)
         self.semesterLength = data.semesterLength
+        self.categories = data.categories
+        self.subcategories = data.subcategories
     }
 
     /*

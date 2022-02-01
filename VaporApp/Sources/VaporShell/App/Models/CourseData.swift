@@ -102,6 +102,14 @@ public final class CourseData: Model {
     @Field(key: "dualCreditDailySchedule")
     public var dualCreditDailySchedule: String?
 
+    ///semester length
+    @Field(key: "categories")
+    public var categories: String?
+
+    ///semester length
+    @Field(key: "subcategories")
+    public var subcategories: String?
+
     // Creates a new, empty Course.
     public init() { }
 }
