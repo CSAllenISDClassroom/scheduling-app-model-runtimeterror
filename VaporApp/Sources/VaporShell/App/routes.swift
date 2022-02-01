@@ -21,6 +21,7 @@ import FluentMySQLDriver
 
 let coursesController = CoursesController()
 let categoriesController = CategoriesController()
+let subcategoriesController = SubcategoryController()
 
 func routes(_ app: Application) throws {
     
@@ -34,7 +35,8 @@ func routes(_ app: Application) throws {
     try coursesController.getCourses(app)
     try coursesController.getCourse(app)
     try categoriesController.getCategories(app)
-
+    try subcategoriesController.getCategories(app)
+    
     /// This API endpoint provides a list of all employees
     /// Paging is supported
     /// Endpoint URI: /employees
