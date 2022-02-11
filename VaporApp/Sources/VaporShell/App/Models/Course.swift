@@ -71,7 +71,7 @@ public final class Course: Content, Codable {
     // Each inner array contains the period(s) that that class is available
     // For example, [[1], [2], [2, 3]] indicates a class is available
     // during the first period, second period, and a vertically double-blocked 2/3 period
-    private static func availabilityAsPeriods(bitmap: Int) -> [[Int]] {
+    public static func availabilityAsPeriods(bitmap: Int) -> [[Int]] {
         var periods = [[Int]]()
 
         // Handle all single-period cases (bits 0 ... 10)
