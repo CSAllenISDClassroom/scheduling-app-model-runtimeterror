@@ -8,24 +8,17 @@ public class CoursesController {
     public func getCourses(_ app: Application) throws {
         app.get("courses") { req -> Page<Course> in
 
-            let coursesData = CourseData.query(on: req.db)
-
-            var filteredCoursesData = coursesData
-
-            if let semester = try? req.query.get(Int.self, at: "semester") {
-                filteredCoursesData = filteredCoursesData.filter(\.$semester == semester)
-            }
-
-            if let location = try? req.query.get(String.self, at: "location") {
-                filteredCoursesData = filteredCoursesData.filter(\.$location == location)
-            }
-
-            if let level = try? req.query.get(String.self, at: "level") {
-                filteredCoursesData = filteredCoursesData.filter(\.$level == level)
-            }
+            let semester = try? req.query.get(Int.self, at: "semester")
+            let location = try? req.query.get(String.self, at: "location")
+            let level = try? req.query.get(String.self, at: "level")
             
-            let paginatedCoursesData = try await filteredCoursesData.paginate(for: req)
-            let courses = try paginatedCoursesData.map{ try Course(data: $0) }
+            let coursesData = try await CourseData.query(on: req.db)
+              .filter ( semester == nil ? \.$id != "" : \.$semester == semester! )
+              .filter ( location == nil ? \.$id != "" : \.$location == location! )
+              .filter ( level == nil ? \.$id != "" : \.$level == level! )
+              .paginate(for: req)
+            
+            let courses = try coursesData.map{ try Course(data: $0) }
             return courses
         }
     }
