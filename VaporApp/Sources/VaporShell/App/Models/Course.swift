@@ -107,6 +107,30 @@ public final class Course: Content, Codable {
         return periods
     }
 
+    // public func availabilityAsPeriods() -> Set<Int> {
+    //     var periods : Set<Int> = []
+    //     for periodSet in self.periodsAvailable {
+    //         for period in periodSet {
+    //             periods.insert(period!)
+    //         }
+    //     }
+    //     return periods
+    // }
+
+    public static func checkAvailability(forPeriods periods: Set<Int>, courseData: CourseData) -> Bool {
+        let periodsAvailable2D = self.availabilityAsPeriods(bitmap: courseData.periodBitmap)
+        
+        for periodSets in periodsAvailable2D {
+            for period in periodSets {
+                if(periods.contains(period)) {
+                    return true
+                }
+            }
+        }
+        
+        return false
+    }
+
     private static func removeS(fromSemester semester: String) throws -> Int {
         // Drop the initial 'S' from semester (S1, S2)
         guard semester.count == 2,
