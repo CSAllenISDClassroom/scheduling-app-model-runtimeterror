@@ -11,12 +11,18 @@ public class CoursesController {
             let semester = try? req.query.get(Int.self, at: "semester")
             let location = try? req.query.get(String.self, at: "location")
             let level = try? req.query.get(String.self, at: "level")
+
+            let commaDelimitedPeriods = try? req.query.get(String.self, at: "period")
+            let periodsToCheck: [Int] = commaDelimitedPeriods!.split(separator: ",").map{ Int($0)! }
             
             let coursesData = try await CourseData.query(on: req.db)
               .filter ( semester == nil ? \.$id != "" : \.$semester == semester! )
               .filter ( location == nil ? \.$id != "" : \.$location == location! )
               .filter ( level == nil ? \.$id != "" : \.$level == level! )
+              .filter ( { Course.checkAvailability(forPeriods: Set(periodsToCheck), courseData: $0) } )
               .paginate(for: req)
+
+            // .filter ( periodsToCheck == nil ? { $0.id != "" } : { Course.checkAvailability(forPeriods: Set(periodsToCheck), courseData: $0) } )
             
             let courses = try coursesData.map{ try Course(data: $0) }
             return courses
@@ -53,21 +59,21 @@ public class CoursesController {
     /// 
 
     /*
-    public func getEmployeeById(_ app: Application) throws {
-        app.get("employees", ":id") { req -> Employee in
+     public func getEmployeeById(_ app: Application) throws {
+     app.get("employees", ":id") { req -> Employee in
 
-            guard let id = req.parameters.get("id", as: Int.self) else {
-                throw Abort(.badRequest)
-            }
+     guard let id = req.parameters.get("id", as: Int.self) else {
+     throw Abort(.badRequest)
+     }
 
-            guard let employee = try await Employee.query(on: req.db)
-                    .filter(\.$id == id)
-                    .first() else {
-                throw Abort(.notFound)
-            }
-            return employee
-        }
-    }
+     guard let employee = try await Employee.query(on: req.db)
+     .filter(\.$id == id)
+     .first() else {
+     throw Abort(.notFound)
+     }
+     return employee
+     }
+     }
 
      */
 }
