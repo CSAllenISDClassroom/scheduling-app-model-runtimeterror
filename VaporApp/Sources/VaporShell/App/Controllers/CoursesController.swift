@@ -48,6 +48,20 @@ public class CoursesController {
         }
     }
 
+
+    public func getNoCat(_ app: Application) throws {
+        app.get("exceptions", "noCategories") { req -> Page<Course> in
+            let categories: String? = nil
+            //let location = try? req.query.get(String.self, at: "location")
+            //let level = try? req.query.get(String.self, at: "level")
+            
+            let coursesData = try await CourseData.query(on: req.db)
+              .filter ( categories == "" ? \.$id != "" : \.$categories == categories )
+              .paginate(for: req)
+            
+            let courses = try coursesData.map{ try Course(data: $0) }
+            return courses
+
     public func getCoursesWithNoSubcategories(_ app: Application) throws {
         app.get("exceptions", "noSubcategories") { req -> Page<Course> in
 
@@ -57,6 +71,7 @@ public class CoursesController {
 
             let coursesWithNoSubcategories = try coursesDataWithNoSubcategories.map { try Course(data: $0) }
             return coursesWithNoSubcategories
+
         }
     }
 

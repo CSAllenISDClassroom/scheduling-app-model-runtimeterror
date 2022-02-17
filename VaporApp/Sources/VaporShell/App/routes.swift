@@ -36,8 +36,11 @@ func routes(_ app: Application) throws {
     try coursesController.getCourse(app)
     try categoriesController.getCategories(app)
     try subcategoriesController.getCategories(app)
+
+    try coursesController.getNoCat(app)
+
     try coursesController.getCoursesWithNoSubcategories(app)
-    
+
     /// This API endpoint provides a list of all employees
     /// Paging is supported
     /// Endpoint URI: /employees
