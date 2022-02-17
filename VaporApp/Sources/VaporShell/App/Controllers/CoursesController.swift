@@ -21,6 +21,15 @@ public class CoursesController {
             let courses = try coursesData.map{ try Course(data: $0) }
             return courses
         }
+
+        app.get("exceptions", "noPeriods") { req -> Page<Course> in
+            let coursesData = try await CourseData.query(on: req.db)
+              .filter ( \.$periodBitmap == nil )
+              .paginate(for: req)
+
+            let courses = try coursesData.map{ try Course(data:$0) }
+            return courses
+        }
     }
 
     public func getCourse(_ app: Application) throws {
@@ -39,6 +48,7 @@ public class CoursesController {
         }
     }
 
+
     public func getNoCat(_ app: Application) throws {
         app.get("exceptions", "noCategories") { req -> Page<Course> in
             let categories: String? = nil
@@ -51,6 +61,17 @@ public class CoursesController {
             
             let courses = try coursesData.map{ try Course(data: $0) }
             return courses
+
+    public func getCoursesWithNoSubcategories(_ app: Application) throws {
+        app.get("exceptions", "noSubcategories") { req -> Page<Course> in
+
+            let coursesDataWithNoSubcategories = try await CourseData.query(on: req.db)
+              .filter( \.$subcategories == nil )
+              .paginate(for: req)
+
+            let coursesWithNoSubcategories = try coursesDataWithNoSubcategories.map { try Course(data: $0) }
+            return coursesWithNoSubcategories
+
         }
     }
 
