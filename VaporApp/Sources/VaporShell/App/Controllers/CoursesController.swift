@@ -39,6 +39,18 @@ public class CoursesController {
         }
     }
 
+    
+    public func getCoursesWithNoCategories(_ app: Application) throws {
+        app.get("exceptions", "noCategories") { req -> Page<Course> in
+            //let categoryFilters: Set<String?> = [nil, ""]
+            let getCourseDataWithNoCategories = try await CourseData.query(on: req.db)
+              .filter ( \.$categories == nil )
+              .paginate(for: req)
+            let getCoursesWithNoCategories = try getCourseDataWithNoCategories.map { try Course(data: $0) }
+            return getCoursesWithNoCategories
+        }
+    }
+
     /// Retrieves the employee record specified by the ID
     ///
     /// * API Endpoint: /employees/{id}
