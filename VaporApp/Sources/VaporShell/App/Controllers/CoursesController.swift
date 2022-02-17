@@ -48,6 +48,18 @@ public class CoursesController {
         }
     }
 
+    public func getCoursesWithNoSubcategories(_ app: Application) throws {
+        app.get("exceptions", "noSubcategories") { req -> Page<Course> in
+
+            let coursesDataWithNoSubcategories = try await CourseData.query(on: req.db)
+              .filter( \.$subcategories == nil )
+              .paginate(for: req)
+
+            let coursesWithNoSubcategories = try coursesDataWithNoSubcategories.map { try Course(data: $0) }
+            return coursesWithNoSubcategories
+        }
+    }
+
     /// Retrieves the employee record specified by the ID
     ///
     /// * API Endpoint: /employees/{id}
