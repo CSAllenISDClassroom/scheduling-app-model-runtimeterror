@@ -61,6 +61,8 @@ public class CoursesController {
             
             let courses = try coursesData.map{ try Course(data: $0) }
             return courses
+            }
+    }
 
     public func getCoursesWithNoSubcategories(_ app: Application) throws {
         app.get("exceptions", "noSubcategories") { req -> Page<Course> in
