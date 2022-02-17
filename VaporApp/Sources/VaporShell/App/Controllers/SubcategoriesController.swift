@@ -12,15 +12,4 @@ public class SubcategoryController {
             return subcategories
         }
     }
-
-    public func getNullCategories(_ app: Application) throws {
-        app.get("exceptions", "noSubcategories") { req -> Page<Subcategory> in
-            let subcategoryFilters: Set<String?> = [nil, ""]
-            let nullSubcategoriesData = try await SubcategoryData.query(on: req.db)
-              .filter ( \.$name ~~ subcategoryFilters )
-              .paginate(for: req)
-            let nullSubcategories = try nullSubcategoriesData.map { try Subcategory(data: $0) }
-            return nullSubcategories
-        }
-    }
 }
