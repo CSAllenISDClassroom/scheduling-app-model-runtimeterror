@@ -77,6 +77,45 @@ public class CoursesController {
         }
     }
 
+    public func getNoLocation(_ app: Application) throws {
+        app.get("exceptions", "noLocation") { req -> Page<Course> in
+
+            let courseData = try await CourseData.query(on: req.db)
+              .filter( \.$location == nil )
+              .paginate(for: req)
+
+            let courses = try courseData.map { try Course(data: $0) }
+            return courses
+
+        }
+    }
+
+    public func getNoLevel(_ app: Application) throws {
+        app.get("exceptions", "noLevel") { req -> Page<Course> in
+
+            let courseData = try await CourseData.query(on: req.db)
+              .filter( \.$level == nil )
+              .paginate(for: req)
+
+            let courses = try courseData.map { try Course(data: $0) }
+            return courses
+
+        }
+    }
+
+    public func getNoSemesterLength(_ app: Application) throws {
+        app.get("exceptions", "noSemesterLength") { req -> Page<Course> in
+
+            let courseData = try await CourseData.query(on: req.db)
+              .filter( \.$semesterLength == nil )
+              .paginate(for: req)
+
+            let courses = try courseData.map { try Course(data: $0) }
+            return courses
+
+        }
+    }
+
     /// Retrieves the employee record specified by the ID
     ///
     /// * API Endpoint: /employees/{id}
