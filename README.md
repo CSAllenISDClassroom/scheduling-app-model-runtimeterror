@@ -26,6 +26,22 @@
 
 # This document provides information for the API Endpoints related to the A.S.S.
 
+## Routing
+* /courses
+   * ?semester=
+   * ?location=
+   * ?level=
+   * /id=
+* /exceptions
+   * /noPeriods
+   * /noSemester
+   * /noLevel
+   * /noCategories
+   * /noSubcategories
+   * /noLocation
+* /categories
+* /subCategories
+
 # Documentation Standards
 * Return values are documented in their respective classes
 * Each class also provides a sample representation in JSON
