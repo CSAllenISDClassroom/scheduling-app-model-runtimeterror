@@ -42,7 +42,7 @@ public final class Course: Content, Codable {
                   self.isApplication = data.isApplication
                   self.courseLevel = Self.getCourseLevel(data: data)
                   self.applicationCode = data.applicationCode*/
-        self.periodsAvailable = Self.availabilityAsPeriods(bitmap: data.periodBitmap)
+        self.periodsAvailable = Self.availabilityAsPeriods(bitmap: data.periodBitmap ?? 0)
         self.semesterLength = data.semesterLength
         self.categories = data.categories
         self.subcategories = data.subcategories

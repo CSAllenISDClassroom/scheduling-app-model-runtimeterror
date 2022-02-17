@@ -21,6 +21,15 @@ public class CoursesController {
             let courses = try coursesData.map{ try Course(data: $0) }
             return courses
         }
+
+        app.get("exceptions", "noPeriods") { req -> Page<Course> in
+            let coursesData = try await CourseData.query(on: req.db)
+              .filter ( \.$periodBitmap == nil )
+              .paginate(for: req)
+
+            let courses = try coursesData.map{ try Course(data:$0) }
+            return courses
+        }
     }
 
     public func getCourse(_ app: Application) throws {

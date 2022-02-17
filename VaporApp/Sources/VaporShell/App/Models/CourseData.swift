@@ -92,7 +92,7 @@ public final class CourseData: Model {
 
     ///avalibility bit map
     @Field(key: "periodBitmap")
-    public var periodBitmap: Int
+    public var periodBitmap: Int?
 
     ///semester length
     @Field(key: "semesterLength")
